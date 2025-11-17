@@ -1,168 +1,175 @@
-# Automatic Stock — Almacén Automatizado
+# Automatic Stock — Automated Warehouse
 
-Una solución de proyecto para PR2 (Informática Industrial y Robótica) que implementa un sistema de gestión de pedidos, asignación de targets para un cobot (RoboDK / ESP32) y una interfaz web para pedidos y simulación.
+This repository contains the Automatic Stock project (PR2 — Industrial Informatics & Robotics). It implements a prototype automated warehouse: order handling, box placement algorithms for a cobot, a lightweight backend API, web frontend, and ESP32 / MQTT integration for device communications and simulation with RoboDK.
 
----
+--
 
-**Resumen rápido:**
+Quick summary:
 
-- **Dominio:** Almacén automatizado, colocación de cajas por Cobot, integración web y comunicaciones MQTT.
-- **Lenguajes / Plataformas:** C++ (simulación / algoritmos), Node.js (API), Web (HTML/CSS/JS), ESP32 (firmware / MQTT), RoboDK (simulación robótica).
+- Domain: automated warehouse, box placement and container management for a cobot.
+- Tech: C++ (algorithms & simulation), Node.js (Express backend), Web (HTML/CSS/JS), ESP32 (firmware & MQTT), RoboDK (robot simulation).
 
-**Logros y características principales**
+Key achievements:
 
-- Algoritmos de colocación y gestión de contenedores y cajas (implementados en `src/`).
-- API REST ligera en `APP/backend` (Express + PostgreSQL client) para almacenar/recuperar pedidos y targets.
-- Frontend web en `APP/frontend/Web` con carrito y flujo de pedido (`carrito.html`, `index.html`).
-- Soporte de mensajes MQTT / JSON entre ESP32 y back-end (carpetas `Comunicaciones_ESP32-S3`, `ESP32-S3_MASTER`, etc.).
-- Integración conceptual con RoboDK (simulación y generación de targets / trayectorias).
+- Placement and container management algorithms (C++ code in `src/`).
+- Lightweight REST API in `APP/backend` (Express + `pg`) to persist orders/targets.
+- Web frontend in `APP/frontend/Web` providing a cart UI and order flow.
+- JSON/MQTT message formats and examples for ESP32 communication (see `Comunicaciones_ESP32-S3/formatosJSON.txt`).
+- RoboDK integration for simulating target assignment and verifying robot trajectories.
 
----
+--
 
-**Índice**
+Contents
 
-- [Arquitectura](#arquitectura)
-- [Instalación Rápida](#instalaci%C3%B3n-r%C3%A1pida)
-- [Uso](#uso)
-- [Mapa de archivos](#mapa-de-archivos)
-- [Diagrama de flujo de datos](#diagrama-de-flujo-de-datos)
-- [Desarrollo](#desarrollo)
-- [Próximos pasos y mejoras](#pr%C3%B3ximos-pasos-y-mejoras)
-- [Autores y Créditos](#autores-y-cr%C3%A9ditos)
+- Architecture (text description)
+- Quick install
+- Usage
+- File map (important folders)
+- Data flow (ASCII)
+- Development notes & box sizes
+- Next steps & suggestions
+- Credits
 
----
+--
 
-## Arquitectura
+Architecture (text-based)
 
-```mermaid
-flowchart LR
-  Browser[Usuario / Navegador]
-  Frontend[Frontend Web<br/>`APP/frontend/Web`]
-  Backend[Backend Node.js<br/>`APP/backend`]
-  DB[(Postgres / BBDD)]
-  ESP32[ESP32 Devices<br/>(MQTT)]
-  RoboDK[RoboDK / Simulación]
+The system is composed of several cooperating layers and components. Mermaid diagrams were avoided due to a known rendering issue in the architecture generator; the structure is described below in plain text.
 
-  Browser -->|HTTP| Frontend
-  Frontend -->|AJAX / Fetch| Backend
-  Backend -->|SQL| DB
-  ESP32 -->|MQTT JSON| Backend
-  Backend -->|Targets / Orders| RoboDK
-  RoboDK -->|Simulation results| Backend
+- User / Browser:
+  - Interacts with the Web frontend (`APP/frontend/Web`) to create carts and place orders.
 
-  classDef hw fill:#ffe4b5,stroke:#b36b00;
-  class ESP32,RoboDK hw;
-```
+- Frontend Web:
+  - Static pages (`index.html`, `carrito.html`) and JS modules (`js/` folder) that prepare order data and call backend APIs.
 
-> Nota: Si tu entorno no renderiza Mermaid, ver la sección 'Diagrama de flujo de datos' para un diagrama ASCII alternativo.
+- Backend API (`APP/backend`):
+  - An Express server that exposes REST endpoints to receive orders, persist them (via PostgreSQL), and expose computed targets for the cobot.
 
----
+- Database (optional):
+  - PostgreSQL (recommended) to store orders, inventory, and generated targets. The backend currently uses the `pg` client; add SQL schema or docker-compose to spin up the DB.
 
-## Instalación rápida
+- ESP32 devices / MQTT:
+  - Embedded devices publish/subscribe JSON messages (format examples in `Comunicaciones_ESP32-S3/formatosJSON.txt`) to inform about sensor data, confirmations, or to receive target assignments.
 
-Requisitos: `node` (v16+ recomendado), `npm`, un servidor Postgres si quieres persistencia real.
+- RoboDK / Simulation:
+  - The backend can send target sets to RoboDK for simulation and verification. RoboDK projects and robot models are in the `RoboDK/` folder.
 
-### Backend
+How components interact (simplified):
+
+1. User builds an order in the Browser → Frontend gathers items and POSTs order to Backend.
+2. Backend validates order, stores it (DB), runs placement algorithm (C++/or internal module) to compute target positions.
+3. Backend persists targets and notifies devices (ESP32) via MQTT or provides targets to RoboDK for simulation.
+4. ESP32 receives instructions and confirms execution back to Backend via MQTT JSON messages.
+
+--
+
+Quick install
+
+Requirements: `node` (v16+ recommended), `npm`, and optionally a local Postgres instance.
+
+Backend (development):
 
 ```bash
 cd APP/backend
 npm install
-# Inicia en modo desarrollo (usa nodemon):
+# Run in dev mode (uses nodemon):
 npm run dev
 ```
 
-### Frontend
+Frontend (static):
 
 ```bash
 cd APP/frontend/Web
-# No hay dependencias definidas; puedes abrir `index.html` directamente
-# O servir con un servidor estático (recomendado para CORS):
+# You can open `index.html` in a browser, or run a simple static server:
 python3 -m http.server 5500
-# Después abre: http://localhost:5500/index.html
+# Then open: http://localhost:5500/index.html
 ```
 
----
+--
 
-## Uso
+Usage notes
 
-- Abrir la interfaz web (`APP/frontend/Web/index.html`) para navegar y simular pedidos.
-- El carrito y pedido envían las peticiones al backend (ver `APP/frontend/Web/js/pedido_a_BBDD.js`, `cartService.js`).
-- El backend expone endpoints en `APP/backend/src/index.js` (iniciar el servidor para ver rutas). Para desarrollo, ejecuta `npm run dev`.
+- Open the frontend (`APP/frontend/Web/index.html`) to create and submit orders.
+- The frontend JS files that handle order submission are `APP/frontend/Web/js/pedido_a_BBDD.js` and `APP/frontend/Web/js/cartService.js`.
+- Start the backend to accept requests and to compute/persist targets.
 
-### Peticiones y formato
+Data & message formats
 
-- Mensajes MQTT / JSON: el proyecto maneja JSON para la comunicación entre ESP32 y servidor. Ver `Comunicaciones_ESP32-S3/formatosJSON.txt` para ejemplos de formatos.
+- MQTT / JSON message examples are available in `Comunicaciones_ESP32-S3/formatosJSON.txt`.
 
----
+--
 
-## Mapa de archivos (resumen relevante)
+File map (high level)
 
-- `APP/backend/` — API (Express + PG client). Script dev: `npm run dev`.
-- `APP/frontend/Web/` — Interfaz web, CSS y scripts (`index.html`, `carrito.html`, `js/*.js`).
-- `Comunicaciones_ESP32-S3/` — Código y recursos relacionados con ESP32 (MQTT, ejemplos). 
-- `ESP32-S3_MASTER/` — Firmware, cabeceras y sketches de ejemplo.
-- `src/` y `headers/` — Implementación C++ de algoritmos, cajas, contenedores, order handling, MQTT helpers (uso en simulaciones y RoboDK).
-- `RoboDK/` — Proyectos y recursos para simulación (archivos `.rdk`, robots y elementos 3D).
+- `APP/backend/` — Node.js API (Express) and dev script `npm run dev`.
+- `APP/frontend/Web/` — Web UI (HTML/CSS/JS) and resources.
+- `Comunicaciones_ESP32-S3/` — ESP32 code, examples and JSON formats.
+- `ESP32-S3_MASTER/` — Firmware sketches and headers.
+- `src/` and `headers/` — C++ algorithm implementations used for placement and container management.
+- `RoboDK/` — Simulation projects, robot definitions and scene assets.
 
----
+--
 
-## Diagrama de flujo de datos (ASCII)
+Data flow (ASCII)
 
-Browser -> Frontend -> Backend -> DB
-           ^                 |
-           |                 v
-        ESP32 (MQTT) ---> Backend -> RoboDK
+User -> Frontend -> Backend -> Database
+                     ^
+                     |
+                  ESP32 (MQTT)
+                     |
+                  RoboDK (simulation)
 
----
+--
 
-## Desarrollo y notas técnicas
+Development notes & box sizes
 
-- Algoritmos principales para colocar cajas: implementaciones en `src/` (`Algorithms.cpp`, `container.cpp`, `order.cpp`).
-- Formatos y tamaños de cajas (desde `notes.txt`):
-  - S: 150×120×100
-  - M: 200×210×70
-  - L: 200×210×210
-  - XL: 250×300×210
+- Important C++ files implementing algorithms: `src/Algorithms.cpp`, `src/container.cpp`, `src/order.cpp`.
+- Box sizes noted in `notes.txt` (used for packing/placement heuristics):
+  - S: 150 x 120 x 100
+  - M: 200 x 210 x 70
+  - L: 200 x 210 x 210
+  - XL: 250 x 300 x 210
 
-- Si se usa RoboDK, los targets se generan desde el backend y se comunican a RoboDK para simulación y verificación de trayectorias.
+Color hints (visualization): carton `#a58a67`, logo `#013357`.
 
-### Comandos útiles
+--
+
+Commands & quick helpers
 
 ```bash
-# Iniciar backend (desarrollo)
+# Start backend dev server
 cd APP/backend && npm run dev
 
-# Servir frontend (desde Web folder)
+# Serve frontend locally
 cd APP/frontend/Web && python3 -m http.server 5500
 
-# Buscar archivos C++ relacionados con algoritmos
-rg "Algorithms" src/ || grep -R "Algorithms" src/ 
+# Find algorithm sources (macOS/Linux)
+grep -R "Algorithms" src/ || rg "Algorithms" src/
 ```
 
----
+--
 
-## Próximos pasos y mejoras sugeridas
+Next steps & suggestions
 
-- Documentar los endpoints REST en `APP/backend/src/index.js` con ejemplos `curl`.
-- Añadir un `README` detallado en `APP/backend` y en `APP/frontend/Web` con instrucciones para testeo y despliegue.
-- Incluir script de inicialización SQL o `docker-compose` para levantar Postgres y el backend de forma reproducible.
-- Añadir tests unitarios para los algoritmos de colocación (`src/`), y CI básico.
+- Add a `docker-compose.yml` to bring up Postgres + backend quickly for reproducible development.
+- Document backend endpoints (`APP/backend/src/index.js`) with example `curl` commands or an OpenAPI spec.
+- Add unit tests for C++ placement algorithms and a small integration test for the backend endpoints.
+- Add a `/docs/screenshots` folder and include UI screenshots referenced from the README.
 
----
+--
 
-## Autores y créditos
+Credits
 
-- Proyecto y código por el equipo del PR2 / autor: `gonzalomaartinpenalba`.
+- Project and code by `gonzalomaartinpenalba` (PR2 course work). See repository folders for authorship of subcomponents.
 
----
+If you want, I can now:
 
-Si quieres, puedo:
+- Add screenshots and reference them from the README.
+- Generate a `docker-compose.yml` for Postgres + backend.
+- Produce an OpenAPI spec (basic) from the backend routes.
 
-- Añadir imágenes o capturas de pantalla dentro del repo (`/docs/screenshots`) y referenciarlas en este README.
-- Generar un `docker-compose.yml` para levantar backend+Postgres.
-- Documentar las rutas REST con ejemplos `curl` y OpenAPI minimal.
+Tell me which of these you'd like me to do next.
 
-Dime qué prefieres que haga a continuación.
 Proyect for PR2 Informática industrial y robótica.
 
 Desarrollo de un almacen automatizado
