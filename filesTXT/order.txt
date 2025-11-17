@@ -1,0 +1,213 @@
+
+--------------------------
+  Number of boxes: 4
+  Box 1
+  ID_Box M
+  Length: 20
+  Width: 21
+  Height: 7
+  Volume: 2940
+  Box 2
+  ID_Box M
+  Length: 20
+  Width: 21
+  Height: 7
+  Volume: 2940
+  Box 3
+  ID_Box L
+  Length: 20
+  Width: 21
+  Height: 21
+  Volume: 8820
+  Box 4
+  ID_Box L
+  Length: 20
+  Width: 21
+  Height: 21
+  Volume: 8820
+
+--------------------------
+  Number of boxes: 8
+  Box 1
+  ID_Box M
+  Length: 20
+  Width: 21
+  Height: 7
+  Volume: 2940
+  Box 2
+  ID_Box M
+  Length: 20
+  Width: 21
+  Height: 7
+  Volume: 2940
+  Box 3
+  ID_Box S
+  Length: 15
+  Width: 12
+  Height: 10
+  Volume: 1800
+  Box 4
+  ID_Box S
+  Length: 15
+  Width: 12
+  Height: 10
+  Volume: 1800
+  Box 5
+  ID_Box L
+  Length: 20
+  Width: 21
+  Height: 21
+  Volume: 8820
+  Box 6
+  ID_Box L
+  Length: 20
+  Width: 21
+  Height: 21
+  Volume: 8820
+  Box 7
+  ID_Box X
+  Length: 25
+  Width: 30
+  Height: 21
+  Volume: 15750
+  Box 8
+  ID_Box X
+  Length: 25
+  Width: 30
+  Height: 21
+  Volume: 15750
+
+--------------------------
+  Number of boxes: 4
+  Box 1
+  ID_Box S
+  Length: 15
+  Width: 12
+  Height: 10
+  Volume: 1800
+  Box 2
+  ID_Box M
+  Length: 20
+  Width: 21
+  Height: 7
+  Volume: 2940
+  Box 3
+  ID_Box L
+  Length: 20
+  Width: 21
+  Height: 21
+  Volume: 8820
+  Box 4
+  ID_Box X
+  Length: 25
+  Width: 30
+  Height: 21
+  Volume: 15750
+
+--------------------------
+  Number of boxes: 4
+  Box 1
+  ID_Box S
+  Length: 15
+  Width: 12
+  Height: 10
+  Volume: 1800
+  Box 2
+  ID_Box M
+  Length: 20
+  Width: 21
+  Height: 7
+  Volume: 2940
+  Box 3
+  ID_Box L
+  Length: 20
+  Width: 21
+  Height: 21
+  Volume: 8820
+  Box 4
+  ID_Box X
+  Length: 25
+  Width: 30
+  Height: 21
+  Volume: 15750
+
+--------------------------
+  Number of boxes: 4
+  Box 1
+  ID_Box S
+  Length: 15
+  Width: 12
+  Height: 10
+  Volume: 1800
+  Box 2
+  ID_Box M
+  Length: 20
+  Width: 21
+  Height: 7
+  Volume: 2940
+  Box 3
+  ID_Box L
+  Length: 20
+  Width: 21
+  Height: 21
+  Volume: 8820
+  Box 4
+  ID_Box X
+  Length: 25
+  Width: 30
+  Height: 21
+  Volume: 15750
+
+--------------------------
+  Number of boxes: 4
+  Box 1
+  ID_Box S
+  Length: 15
+  Width: 12
+  Height: 10
+  Volume: 1800
+  Box 2
+  ID_Box M
+  Length: 20
+  Width: 21
+  Height: 7
+  Volume: 2940
+  Box 3
+  ID_Box L
+  Length: 20
+  Width: 21
+  Height: 21
+  Volume: 8820
+  Box 4
+  ID_Box X
+  Length: 25
+  Width: 30
+  Height: 21
+  Volume: 15750
+
+--------------------------
+  Number of boxes: 4
+  Box 1
+  ID_Box S
+  Length: 15
+  Width: 12
+  Height: 10
+  Volume: 1800
+  Box 2
+  ID_Box M
+  Length: 20
+  Width: 21
+  Height: 7
+  Volume: 2940
+  Box 3
+  ID_Box L
+  Length: 20
+  Width: 21
+  Height: 21
+  Volume: 8820
+  Box 4
+  ID_Box X
+  Length: 25
+  Width: 30
+  Height: 21
+  Volume: 15750

@@ -1,0 +1,194 @@
+TOPIC: ****
+SUBSCRIBERS:
+    -
+    -
+PUBLISHERS:
+    -
+    -
+Archivo JSON:
+'''
+    Aquí la estructura.
+'''
+
+*********************************************************************************
+
+TOPIC: INFOPEDIDO_TOPIC --> giirob/pr2/B1/infopedido
+SUBSCRIBERS:
+    - ESP32-S3_MASTER
+PUBLISHERS:
+    - PC_ALGORITHM --> C++
+Archivos JSON:
+'''
+***** UNO AL COMENZAR LA ORDEN Y OTRO AL FINALIZAR *****
+{
+    "ORDERTYPE": "0",
+    "ACTION": "start | stop",
+    "IDORDER": "pedidoID",
+    "NCONTAINERS": "x"
+}
+
+***** UNO POR CADA CONTENEDOR QUE TENGA LA ORDEN *****
+{
+    "ORDERTYPE": "1",
+    "IDCONTAINER": "containerID",
+    "NBOXES": "y"
+}
+
+***** UNO POR CADA CAJA QUE HAYA EN UN CONTENEDOR *****
+{
+    "ORDERTYPE": "2",
+    "IDCONTAINER": "containerID",
+    "IDBOX": " X | L | M | S ",
+    "POSE": "(x,y,z)"
+}
+
+'''
+
+''' (si solucionamos el problema del tamaño del JSON)
+{
+  "ID_PEDIDO": "<string>",
+  "N_CONT": "<int>",
+  "CONTAINER": [
+    {
+      "ID_CONT": "<string> + <id_size>",
+      "N_BOX": "<int>",
+      "BOXES": [
+        {
+          "ID_BOX": "<char><format := "X" || "L" || "M" || "S" >",
+          "POSE": "<string><format := (x,y,z)>"
+        },
+        {
+            ...
+        }
+      ]
+    },
+    {
+      ...
+    }
+  ]
+}
+'''
+
+*********************************************************************************
+
+TOPIC: ILUMINATION_TOPIC --> giirob/pr2/B1/control/sensors/ilumination
+SUBSCRIBERS:
+    - ESP32-S3_MASTER
+PUBLISHERS:
+    - ESP32-S3_SLAVE
+Archivo JSON:
+'''
+[
+    {
+        "ID_SENSOR": "<string>",
+        "DATA": "<string>"
+    },
+    {
+        ...
+    }
+]
+'''
+
+*********************************************************************************
+
+TOPIC: PROXIMITY_TOPIC --> giirob/pr2/B1/control/sensors/proximity
+SUBSCRIBERS:
+    - ESP32-S3_MASTER
+PUBLISHERS:
+    - ESP32-S3_SLAVE    
+Archivo JSON:
+'''
+{
+    "ID_SENSOR": "<string>"
+    "PROXIMITY_TYPE": "<string>"
+}
+'''
+
+*********************************************************************************
+
+TOPIC: EMERGENCY_TOPIC --> giirob/pr2/B1/control/emergency
+SUBSCRIBERS:
+    - ESP32-S3_MASTER
+PUBLISHERS:
+    - ESP32-S3_SLAVE    
+Archivo JSON:
+'''
+{
+    "ID_SENSOR": "<string>"
+    "EMERGENCY_TYPE": "<string>"
+}
+'''
+
+*********************************************************************************
+
+TOPIC: INCIDENCE_TOPIC --> giirob/pr2/B1/control/incidence
+SUBSCRIBERS:
+    - ESP32-S3_MASTER
+PUBLISHERS:
+    - ESP32-S3_SLAVE    
+Archivo JSON:
+'''
+{
+    "ID_SENSOR": "<string>"
+    "TYPE": "<string>"
+}
+'''
+
+*********************************************************************************
+
+TOPIC: CONTROLBOX_TOPIC --> giirob/pr2/B1/control/boxes
+SUBSCRIBERS:
+    - ESP32-S3_MASTER
+PUBLISHERS:
+    - ESP32-S3_SLAVE
+Archivo JSON:
+'''
+{
+    "ID_BOX": "<char><format := "X" || "L" || "M" || "S" >"
+}
+'''
+
+*********************************************************************************
+
+TOPIC: ORDER_RECEPTION --> giirob/pr2/B1/order
+SUBSCRIBERS:
+    - PC_ALGORITHM --> C++
+PUBLISHERS:
+    - WEB_SERVER --> JS
+Archivo JSON:
+'''
+{
+    "ID_PEDIDO": "<string>",
+    "N_BOX_XL": "<int>",
+    "N_BOX_L": "<int>",
+    "N_BOX_M": "<int>",
+    "N_BOX_S": "<int>"
+}
+'''
+
+*********************************************************************************
+
+TOPIC: 
+{
+    DESPALETIZADO_STATUS_TOPIC --> giirob/pr2/B1/actions/despaletizado/status
+    DESPALETIZADO_COMMANDS_TOPIC --> giirob/pr2/B1/actions/despaletizado/commands
+    ASIGNACION_STATUS_TOPIC --> giirob/pr2/B1/actions/asignacion/status
+    ASIGNACION_COMMANDS_TOPIC --> giirob/pr2/B1/actions/asignacion/commands
+    AGV_STATUS_CONTROL --> giirob/pr2/B1/actions/agvControl/status
+    AGV_COMMANDS_CONTROL --> giirob/pr2/B1/actions/agvControl/commands
+}
+SUBSCRIBERS:
+    - ROBODK_SIMULATION --> PY
+PUBLISHERS:
+    - ESP32-S3_MASTER
+Archivo JSON:
+'''
+{
+    "ACTION": "<string><format := "(ID_PROG)",
+    "POSE": "<string><format := (x,y,z)>"
+}
+
+{
+    "STATE": "<string><format := "ready | inProces",
+}
+'''

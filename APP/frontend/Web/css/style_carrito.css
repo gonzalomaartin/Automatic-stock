@@ -1,0 +1,378 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* 
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+}
+
+html
+{
+    scroll-behavior: smooth;
+}
+
+body 
+{
+    font-family: 'Poppins', sans-serif;
+    background-color: #061f3d;
+}
+
+header{
+    margin-bottom: 20px;
+}
+
+.menu
+{
+    padding: 10px;
+    box-shadow: 0 3px 5px rgba(218, 23, 218, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#opacidad{
+    top:0;
+}
+
+.logo
+{
+    width: 60px;
+    text-align: center;
+    display: flex;
+}
+
+.cart-icon
+{
+    color: #ffffff;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+.cart-count{
+    background-color: #7270ec;
+    color: #ffffff;
+    border-radius: 100%;
+    display:inline-block;
+    width: 20px;
+    line-height: 20px;
+    aspect-ratio: 1;
+    font-size: 12px;
+    text-align: center;
+}
+
+#todo{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+}
+
+.tarjeta-producto{
+    display: flex;
+    gap:30px;
+    align-items: center;
+    justify-content: space-between;
+    width: 500px;
+}
+
+.tarjeta-producto img{
+    height: 100px;
+    margin-right: 0;
+}
+
+.tarjeta-producto h3{
+    width: 140px;
+    font-size: 15px;
+    color: #ffffff;
+    background-color: #7270ec;
+    padding: 5px;
+    border-radius: 20px;
+    text-align: center;
+}
+
+.tarjeta-producto p{
+    font-size: 20px;
+    color: #ffffff;
+    width: 180px;
+}
+
+.buttons{
+    display: flex;
+    gap: 6px;
+    align-items: center;
+}
+
+.tarjeta-producto button{
+    background-color: #7270ec;
+    color: #ffffff;
+    border-radius: 100%;
+    border: none;
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+}
+
+.tarjeta-producto button:hover{
+    transform: scale(1.1);
+}
+
+.tarjeta-producto span{
+    font-size: 20px;
+    color: #ffffff;
+    padding: 5px;
+}
+
+#botonesytotales{
+    bottom:50px;
+    width: 100%;
+}
+
+#totales{
+    text-align: center;
+    color: #000;
+    font-size: 17px;
+    background-color: #ffffff;
+    padding: 5px;
+    width: 200px;
+    margin: auto;
+    border-radius: 20px;
+}
+
+#botones{
+    text-align: center;
+    width: 400px;
+    margin:auto;
+    padding: 10px;
+}
+
+#botones button{
+    background-color: #7270ec;
+    color: #ffffff;
+    border: none;
+    padding: 10px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 15px;
+    margin: 10px;
+}
+
+#botones button:hover{
+    transform: scale(1.1);
+}
+
+.mensaje-carrito-vacio{
+    text-align: center;
+    color: #ffffff;
+    background-color: #7270ec;
+    box-shadow: 3px 3px rgba(0, 85, 255, 0.7);
+    padding: 10px;
+    width: 300px;
+    margin: auto;
+    border-radius: 20px;
+    margin-top: 30vh;
+}
+
+#carrito-vacio{
+    text-align: center;
+    font-size: 25px;
+    margin-bottom: 5px;
+}
+
+#hacer-pedido{
+    text-align: center;
+    color: #000000;
+    background-color: #ffffff;
+    border: none;
+    padding: 10px;
+    border-radius: 20px;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+#hacer-pedido:hover{
+    transform: scale(1.1);
+}
+
+#mensaje-compra{
+    display:none;
+    text-align: center;
+    color: #ffffff;
+    background-color: #7270ec;
+    padding: 10px;
+    width: 300px;
+    border-radius: 20px;
+    margin:auto;
+    margin-top: 15vh;
+    position:fixed;
+    top: 35%; /* Centra el elemento verticalmente */
+    left: 50%; /* Centra el elemento horizontalmente */
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+#confirmar-compra{
+    text-align: center;
+    color: #000000;
+    background-color: #ffffff;
+    border: none;
+    padding: 5px;
+    border-radius: 20px;
+    margin-top: 10px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+#cancelar-compra{
+    text-align: center;
+    color: #000000;
+    background-color: #ffffff;
+    border: none;
+    padding: 5px;
+    border-radius: 20px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+#confirmar-compra:hover{
+    transform: scale(1.1);
+    transition: 0.3s;
+}
+
+#cancelar-compra:hover{
+    transform: scale(1.1);
+    transition: 0.3s;
+}
+
+footer
+{   
+    background-color: white;
+    box-shadow: 0 -3px 5px rgba(218, 23, 218, 0.7);
+    bottom: 0;
+    width: 100%;
+    position: absolute;
+}
+
+.footer-text
+{
+    padding: 10px;
+    font-size: 20px;
+    color: #747b8f;
+    text-align: center;
+}
+
+.escondido
+{
+    display: none;
+}
+
+.loading-overlay{
+    top:0;
+}
+
+#loading-animation {
+    display: none;
+    width: 50px;
+    height: 50px;
+    border: 5px solid #ccc;
+    border-top-color: #1a1a1a;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    position:absolute;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+    margin:auto;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@media (max-width: 992px){
+    .tarjeta-producto{
+        display: flex;
+        gap:15px;
+        align-items: center;
+        justify-content: space-between;
+        width: 80%;
+    }
+    
+    .tarjeta-producto img{
+        height: 80px;
+        margin-right: 0;
+    }
+}
+
+@media (max-width: 550px){
+    .tarjeta-producto{
+        gap:20px;
+        width: 400px;
+    }
+    .tarjeta-producto img{
+        height: 60px;
+        margin-left: 0px;
+    }
+    .tarjeta-producto h3{
+        width: 120px;
+    }
+    .tarjeta-producto p{
+        text-align: center;
+        width: 170px;
+    }
+    .buttons{
+        display: flex;
+        gap: 6px;
+        align-items: center;
+        margin-left:0px;
+        margin-right:10px;
+    }
+}
+
+@media (max-width:400px){
+    .tarjeta-producto{
+        gap:10px;
+        width: 350px;
+    }
+    .tarjeta-producto img{
+        height: 50px;
+        margin-left: 0px;
+    }
+    .tarjeta-producto h3{
+        width: 100px;
+    }
+    .tarjeta-producto p{
+        text-align: center;
+        width: 150px;
+    }
+    .buttons{
+        display: flex;
+        gap: 6px;
+        align-items: center;
+        margin-left:0px;
+        margin-right:10px;
+    }
+    #botones{
+        text-align: center;
+        width: 380px;
+        margin:auto;
+        padding: 10px;
+    }
+    
+    #botones button{
+        background-color: #7270ec;
+        color: #ffffff;
+        border: none;
+        padding: 5px;
+        border-radius: 20px;
+        cursor: pointer;
+        font-size: 15px;
+        margin: 10px;
+    }
+}

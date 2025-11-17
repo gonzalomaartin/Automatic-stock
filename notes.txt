@@ -1,0 +1,16 @@
+Más adelante, la variable ***objects podrá ser eliminada, 
+o solo de verificación y visualización de las posiciones de las cajas,
+ya que para el proyecto final lo que nos interesa es extraer 
+los targets a donde va a tener que desplazarse el cobot.
+
+tamaño caja S   150 x 120 x 100   1.800 K
+tamaño caja M   200 x 210 x  70   2.940 K
+tamaño caja L   200 x 210 x 210   8.820 K
+tamaño caja XL  250 x 300 x 210  15.750 K
+cajas a utilizar son las .obj
+color carton #a58a67
+color logo #013357
+- Para gestionar la información del pedido y poder comunicarlo con RoboDK a través de la web, necesitamos si o si BBDD
+100x100x50
+75x75x35
+50x50x25

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NN - Carrito</title>
+    <link rel="icon" type="image/png" href="images/image.png">
+    <link rel="stylesheet" href="./css/style_carrito.css">
+    <script src="https://kit.fontawesome.com/3b8572695f.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mqtt/5.5.5/mqtt.min.js"></script>
+    <script src="./js/products.js"></script>
+    <script src="./js/carrito.js" defer></script>
+    <script src="./js/cartService.js" defer></script>
+    <script src="./js/mqtt.js" defer></script>
+    <script src="./js/pedido_a_BBDD.js" defer></script>
+</head>
+
+<body>
+    
+    <header class="header">
+        <div class="menu">
+            <a href="index.html" class="logo">
+                <img src="images/image.png" alt="logo" class="logo">
+            </a>
+            <div class="iconoYnum">
+                <i class="fas fa-shopping-cart cart-icon"></i>
+                <span class="cart-count">0</span>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div id="loading-overlay" class="loading-overlay">
+        <div id="opacidad">
+            <div class="elementos">
+                <div id="todo">
+                    <section id="productos-container">
+                    </section>
+                    <div id="botonesytotales">
+                        <section id="totales">
+                            <p><strong>Total de cajas:</strong> <span id="total-unidades"><strong>0</strong></span></p>
+                            <p><strong>Precio: </strong><span id="precio-unidades"><strong>0</strong></span>€</p>
+                        </section>
+                        <section id="botones">
+                            <button id="vaciar-carrito">Vaciar carrito</button>
+                            <button id="carrito-compra">Comprar</button>
+                            <a href="index.html"><button>Volver al menú</button></a>
+                        </section>
+                    </div>
+                    <div class="mensaje-carrito-vacio">
+                        <p id="carrito-vacio">El carrito está vacío</p>
+                        <a href="index.html#products-list"><button id="hacer-pedido">Hacer pedido</button></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+                <div id="mensaje-compra">
+                    <p>¿Estás seguro que quieres continuar con la compra?</p>
+                    <button id="confirmar-compra">Confirmar</button>
+                    <button id="cancelar-compra">Cancelar</button>
+                </div>
+            </div>
+        </div>
+        <div id="loading-animation"></div>
+    </main>
+
+    <!--<footer class="footer">
+        <div class="footer-text">
+            <p>© 2024 NN - Todos los derechos reservados</p>
+        </div>
+    </footer>-->
+
+</body>
+
+</html>

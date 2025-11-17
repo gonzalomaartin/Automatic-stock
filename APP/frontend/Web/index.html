@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NN</title>
+    <link rel="icon" type="image/png" href="images/image.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <script src="https://kit.fontawesome.com/3b8572695f.js" crossorigin="anonymous"></script>
+    <script src="./js/products.js" ></script>
+    <script src="./js/index.js" defer></script>
+    <script src="./js/cartService.js" defer></script>
+    
+</head>
+
+<body>
+
+    <header class="header">
+
+        <div class="menu">
+
+            <a href="#" class="logo">
+                <img src="images/image.png" alt="logo" class="logo">
+            </a>
+
+            <input type="checkbox" id="menu"/>
+            <label for="menu">
+                <i class="fas fa-bars menu-icono"></i>
+            </label>
+            <nav class="navbarpc">
+                <ul>
+                    <li><a href="#Inicio">Inicio</a></li>
+                    <li><a href="#Proyecto">Proyecto</a></li>
+                    <li><a href="#Equipo">Equipo</a></li>
+                    <li><a href="#products-list">Experimenta</a></li>
+                </ul>
+            </nav>
+            <nav class="navbar">
+                <ul>
+                    <li><a href="#Inicio">Inicio</a></li>
+                    <li><a href="#Proyecto">Proyecto</a></li>
+                    <li><a href="#Equipo">Equipo</a></li>
+                    <li><a href="#products-list">Experimenta</a></li>
+                </ul>
+            </nav>
+
+            <div>
+                <ul>
+                    <li class="cart-menu"> <!-- ELEMENTO ABUELO DE btn-buy-cart-->
+                        <a href="carrito.html">
+                            <i class="fas fa-shopping-cart cart-icon"></i>
+                        </a>
+                        <span class="cart-count">0</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="inicio-content" id="Inicio">
+            <div class="inicio-title">
+                <h1>DISEÑO DE ALMACENES INTELIGENTES Y AUTOMÁTICOS</h1>
+            </div>
+        </div>
+    </header>
+    <section class="proyecto-content container" id="Proyecto">
+        <div class="proyecto-info">
+            <h2 class="proyecto-title">Proyecto</h2>
+            <div class="proyecto-text">
+                <div class="proyecto-paragraph">
+                    <p>Almacenes NN ha implementado una <strong>automatización total,</strong>
+                        desde la gestión de pedidos hasta su entrega, 
+                        para mejorar la eficiencia y agilizar los procesos.
+                    </p>
+                </div>
+                <div class="proyecto-paragraph">
+                    <p>
+                        Utilizamos robots autónomos para la gestión de almacén y entrega de pedidos, 
+                        logrando eficiencia y 
+                        fiabilidad gracias a la integración de tecnologías como 
+                        <strong>RoboDK, MQTT y ESP32.</strong>
+                    </p>
+                </div>
+                <div class="proyecto-paragraph">
+                    <p>
+                        Hemos creado una plataforma web interactiva y 
+                        fácil de usar que permite a los clientes realizar pedidos de manera eficiente, 
+                        utilizando tecnologías como <strong>HTML, CSS, JavaScript y PostgreSQL.</strong>
+                    </p>
+                </div>         
+            </div>
+            <a href="proyecto_mas_info.html" class="btn-proyecto-info">Más información</a>    
+        </div>
+    </section>
+    <section class="tecnologies" id="tecnologies-list">
+
+        <h2>Tecnologías utilizadas</h2>
+
+        <div class="swiper mySwiper-2">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <div class="category">
+                        <div class="category-img">
+                            <img src="images/svg/robodk.svg" alt="" class="tecnology-icon">
+                        </div>
+                        <div class="category-txt">
+                            <h3>RoboDK</h3>
+                            <p class="tecnology-description">Simulación del entorno</p>
+                            <!-- <a href="#" class="btn-tecnology-info">Información</a> -->
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="category">
+                        <div class="category-img">
+                            <img src="images/svg/c++.svg" alt="" class="tecnology-icon">
+                        </div>
+                        <div class="category-txt">
+                            <h3>C++</h3>
+                            <p class="tecnology-description">Creación de algoritmos</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="category">
+                        <div class="category-img">
+                            <img src="images/svg/python.svg" alt="" class="tecnology-icon">
+                        </div>
+                        <div class="category-txt">
+                            <h3>Python</h3>
+                            <p class="tecnology-description">Control de los robots</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="category">
+                        <div class="category-img">
+                            <img src="images/svg/css.svg" alt="" class="tecnology-icon">
+                        </div>
+                        <div class="category-txt">
+                            <h3>CSS</h3>
+                            <p class="tecnology-description">Diseño y Estilo Web</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="category">
+                        <div class="category-img" >
+                            <img src="images/svg/html.svg" alt="" class="tecnology-icon">
+                        </div>
+                        <div class="category-txt">
+                            <h3>HTML</h3>
+                            <p class="tecnology-description">Estructurar la Web</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="category">
+                        <div class="category-img">
+                            <img src="images/svg/postgresql-icon.svg" alt="" class="tecnology-icon">
+                        </div>
+                        <div class="category-txt">
+                            <h3>PostgreSQL</h3>
+                            <p class="tecnology-description">Gestión de la DDBB</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="category">
+                        <div class="category-img">
+                            <img src="images/svg/mqttx.svg" alt="" class="tecnology-icon">
+                        </div>
+                        <div class="category-txt">
+                            <h3>MQTT</h3>
+                            <p class="tecnology-description">Comunicación de dispositivos</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="category">
+                        <div class="category-img">
+                            <img src="images/svg/arduino-1.svg" alt="" class="tecnology-icon">
+                        </div>
+                        <div class="category-txt">
+                            <h3>ARDUINO</h3>
+                            <p class="tecnology-description">Código microcontrolador</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="category">
+                        <div class="category-img">
+                            <img src="images/svg/visual-studio-code-1.svg" alt="" class="tecnology-icon">
+                        </div>
+                        <div class="category-txt">
+                            <h3>VSCode</h3>
+                            <p class="tecnology-description">Editor de texto</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="category">
+                        <div class="category-img">
+                            <img src="images/svg/Octicons-mark-github.svg" alt="" class="tecnology-icon">
+                        </div>
+                        <div class="category-txt">
+                            <h3>GitHub</h3>
+                            <p class="tecnology-description">Control de flujo</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="category">
+                        <div class="category-img">
+                            <img src="images/svg/Unofficial_JavaScript_logo_2.svg.svg" alt="" class="tecnology-icon">
+                        </div>
+                        <div class="category-txt">
+                            <h3>JavaScript</h3>
+                            <p class="tecnology-description">Responsive Web</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="category">
+                        <div class="category-img">
+                            <img src="images/svg/nodejs.svg" alt="" class="tecnology-icon">
+                        </div>
+                        <div class="category-txt">
+                            <h3>Node.js</h3>
+                            <p class="tecnology-description">Comunicación con BBDD</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-button-next color"></div>
+            <div class="swiper-button-prev color"></div>
+            <div class="swiper-pagination"></div>
+        </div>
+    </section>
+
+    <section class="Nosotros" id="Equipo">
+        <div class="header-content container">
+            <h2>CONÓCENOS</h2>
+            <div class="swiper mySwiper-1">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div class="header-info">
+                            <div class="header-txt">
+                                <h1>Jose Luis Galán Avilés</h1>
+                                <p class="Descripcion">ESP32 - RoboDK - MQTT - WEB</p>
+                                <a href="#" class="btn-showmore">Ver más</a>
+                            </div>
+                            <div class="header-img">
+                                <img src="images/JL_perfil.PNG" alt="imagen1">
+                            </div>
+                        </div>    
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="header-info">
+                            <div class="header-txt">
+                                <h1>Gonzalo Albelda Barona</h1>
+                                <p class="Descripcion">ESP32 - QR</p>
+                                <a href="#" class="btn-showmore">Ver más</a>
+                            </div>
+                            <div class="header-img">
+                                <img src="images/CaraHuevo.jpg" alt="imagen1">
+                            </div>
+                        </div>      
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="header-info">
+                            <div class="header-txt">
+                                <h1>Alberto Andrés Gómez</h1>
+                                <p class="Descripcion">WEB - BBDD - MQTT</p>
+                                <a href="#" class="btn-showmore">Ver más</a>
+                            </div>
+                            <div class="header-img">
+                                <img src="images/albertopito.jpg" alt="imagen1">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="header-info">
+                            <div class="header-txt">
+                                <h1>Gonzalo Martín Peñalba</h1>
+                                <p class="Descripcion">ALGORITMOS - MQTT</p>
+                                <a href="#" class="btn-showmore">Ver más</a>
+                            </div>
+                            <div class="header-img">
+                                <img src="images/martin.png" alt="imagen1">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="products container" id="products-list">
+        <h2>Experimenta</h2>
+        <p id="Slogan-experimenta">¡Crea tu pedido y que empiece la magia!</p>
+        <div class="swiper mySwiper-3">
+            <div class="swiper-wrapper" id="cont-products">
+                
+            </div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-pagination"></div>
+        </div>
+
+    </section>
+    <footer class="footer">
+        <div class="footer-title">
+            <h3>Proyecto para el grado en Informática Industrial y Robótica </h3>
+        </div>
+        <div class="footer-social">
+            <a href="#" class="link"><i class="fa fa-envelope-o"></i></a>
+            <a href="#" class="link"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" class="link"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="link"><i class="fab fa-github"></i></a>
+        </div>
+        <div class="footer-text">
+            <p>© 2024 NN - Todos los derechos reservados</p>
+        </div>
+    </footer>
+    
+</body>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+</html>

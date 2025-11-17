@@ -1,0 +1,3 @@
+- Gestionar los ficheros JSON para conexxiones MQTT
+
+- Gestionar Place cajas Cobot.
